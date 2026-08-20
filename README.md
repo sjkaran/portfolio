@@ -1,6 +1,6 @@
 # portfolio
 my portfolio
-Link of the site 👉🏻 https://sambitsauravji-cmd.github.io/portfolio/
+Link of the site 👉🏻 https://sjkaran.github.io/portfolio/
 
 
 ## TECH STACK
@@ -11,15 +11,5 @@ Link of the site 👉🏻 https://sambitsauravji-cmd.github.io/portfolio/
 3. Data Base
 > JSON
 
-
-## FILE FOLDER structure
-```
-portfolio/
-├── index.html
-├── style.css
-├── script.js
-├── data.json          ← ✦ your content database
-└── admin/             ← ✦ CMS panel (Phase 2)
-    └── config.yml     ← defines what fields appear in dashboard
 
 ```
