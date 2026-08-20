@@ -1,65 +1,72 @@
 {
-  "name": "Sambit Sourav",
-  "role": ["Full Stack Developer", "Web Engineer", "Problem Solver"],
-  "bio": "I build clean, fast, and thoughtful web experiences. Passionate about turning ideas into real products.",
+  "name": "Shubhrajit Karan",
+  "role": ["Python Developer", "Heading to AIML", "Full Stack Software Developer","Gen-AI Engineer"],
+  "bio": "I build clean, innovative and thoughtful Technology. Passionate about new age technologies, turning ideas into real products.",
 
   "about": {
-    "description": "I'm Sambit Sourav, a web developer from India with a deep interest in building things that live on the internet. I enjoy the full journey — from designing the structure of a page to deploying it live. Currently leveling up my skills one project at a time.",
+    "description": "I'm Shubhrajit Karan, a Python Developer from India, I build Production ready software and web applications using python, currently heading towards AIML, I enjoy building something that is never build before, focus on User experience and problem solving.",
     "stats": [
       { "label": "Projects Built", "value": "10+" },
-      { "label": "Technologies", "value": "8+" },
-      { "label": "Cups of Coffee", "value": "∞" }
+      { "label": "Technologies", "value": "5+" }
     ]
   },
 
   "skills": [
     {
       "category": "Languages",
-      "items": ["HTML", "CSS", "JavaScript", "Python", "Java"]
+      "items": ["Python", "Java", "Shellscript", "HTML/CSS", "C","SQL"]
     },
     {
       "category": "Frameworks & Libraries",
-      "items": ["React", "Node.js", "Express"]
+      "items": ["NumPy","Pandas","Matplotlib","OpenCV","CustomTkinter","Requests","SQLite","Hadoop","Flask","Django"]
     },
     {
       "category": "Tools & Platforms",
-      "items": ["Git", "GitHub", "VS Code", "Figma", "Netlify"]
+      "items": ["Linux","Hadoop","Whisper(openAI)","win32com","Cloudera","Kiro","Cloude code","Git", "GitHub", "VS Code"]
     }
   ],
 
   "projects": [
     {
-      "title": "Photo frame website",
-      "description": "A static website to showcase photo frames for a Photo frame business.",
-      "tags": ["HTML", "CSS", "JavaScript"],
-      "github": "https://github.com/sambitsauravji-cmd",
+      "title": "Swagat AI",
+      "description": "LLM-integrated, AI-Receptionist, to assist customers in any officies, and pulbic portals.",
+      "tags": ["Python","Flask","HTML-CSS", "JavaScript", "Whishper", "Win32com", "MystralAI (Ollama)"],
+      "github": "https://github.com/sjkaran/swagat_ai",
+      "live": "Not deployed, locally tested (due to heavy infrastructure requirement)"
+    },
+    {
+      "title": "Biztrack-web-app",
+      "description": "A real time expence/savings tracker with exportable excel report feature, in your pocket.-mobile phone UI based functional website.",
+      "tags": ["HTML","CSS","JavaScript","JSON","Excel"],
+      "github": "https://github.com/sjkaran/biz_track_webapp",
+      "live": "#",
+      "Deployed Link": "https://sjkaran.github.io/biz_track_webapp/"
+    },
+    {
+      "title": "BizTrack- Desktop Application",
+      "description": "Production ready + Deployed Business Ledger application, to store business expenses and generate Excel report.",
+      "tags": ["CustomTkinter", "Python", "SQLite", "OpenPyExcel", "Matplotlib", "Pandas"],
+      "github": "https://github.com/sjkaran/expanse-notebook-desktop_apk",
       "live": "#"
     },
     {
-      "title": "WeatherNow",
-      "description": "A real-time weather app that fetches data from OpenWeatherMap API and displays forecasts with animated icons.",
-      "tags": ["JavaScript", "REST API", "CSS"],
-      "github": "https://github.com/sambitsauravji-cmd",
-      "live": "#"
-    },
-    {
-      "title": "Portfolio v1",
-      "description": "My first portfolio website — built to learn HTML & CSS fundamentals. Replaced by this version.",
-      "tags": ["HTML", "CSS"],
-      "github": "https://github.com/sambitsauravji-cmd",
-      "live": "#"
+      "title": "Voice Engine",
+      "description": "A Technology (Algorithm) that listens to natuaral language voices of the user, recognizes and communicate accordingly.",
+      "tags": ["Python","numpy","scipy","whisper","pyttsx3","win32com"],
+      "github": "https://github.com/sjkaran/voice_engine",
+      "live": "ready to be used as a tool in any projects"
     }
   ],
 
   "contact": {
-    "intro": "I'm currently open to new opportunities and collaborations. Whether it's a project, a question, or just a hello — my inbox is open.",
+    "intro": "Currently Open to Contribute to innovate, Discuss new technologies, work on projects, my inbox is waiting for your Idea.",
     "email": "sambit@example.com",
     "socials": [
-      { "label": "GitHub", "url": "https://github.com/sambitsauravji-cmd", "icon": "GH" },
-      { "label": "LinkedIn", "url": "https://linkedin.com/in/sambitsourav", "icon": "LI" },
-      { "label": "X", "url": "https://twitter.com/sambitsourav", "icon": "TW" }
+      { "label": "GitHub", "url": "https://github.com/sjkaran", "icon": "GH" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/shubhrajit-karan-334803235/", "icon": "LI" },
+      { "label": "Leet Code", "url": "https://leetcode.com/u/s_j_karan/", "icon": "Leet" }
     ]
   },
 
-  "footer": "Designed & Built by Sambit Sourav"
+  "footer": "Desigend and build by S J Karan"
 }
