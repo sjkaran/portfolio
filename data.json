@@ -39,8 +39,7 @@
       "description": "A real time expence/savings tracker with exportable excel report feature, in your pocket.-mobile phone UI based functional website.",
       "tags": ["HTML","CSS","JavaScript","JSON","Excel"],
       "github": "https://github.com/sjkaran/biz_track_webapp",
-      "live": "#",
-      "Deployed Link": "https://sjkaran.github.io/biz_track_webapp/"
+      "live": "https://sjkaran.github.io/biz_track_webapp/"
     },
     {
       "title": "BizTrack- Desktop Application",
