@@ -4,135 +4,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sambit Sourav — Developer</title>
+  <title>Shubhrajit Karan — Python / AI-ML Developer</title>
+  <meta name="description" content="Shubhrajit Karan — Python developer heading into AI/ML. Projects, skills, and contact." />
 
-  <!-- Google Fonts: Inter for body, Space Grotesk for headings -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Your stylesheet — we build this in Step 2 -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
   <!-- ============================================================
-       NAVIGATION BAR
-       Fixed at top, links jump to each section on click
+       NAV — editor tab bar
   ============================================================ -->
   <nav id="navbar">
-    <div class="nav-logo">SS</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <div class="nav-path">
+      <span class="nav-user">karan@portfolio</span><span class="nav-sep">:</span><span class="nav-tilde">~$</span>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-tabs" id="nav-tabs">
+      <li><a href="#about" class="tab"><span class="tab-dot"></span>about.md</a></li>
+      <li><a href="#skills" class="tab"><span class="tab-dot"></span>skills.json</a></li>
+      <li><a href="#projects" class="tab"><span class="tab-dot"></span>projects/</a></li>
+      <li><a href="#contact" class="tab"><span class="tab-dot"></span>contact.sh</a></li>
     </ul>
   </nav>
 
   <!-- ============================================================
-       HERO SECTION
-       First thing the visitor sees — name, title, CTA buttons
-       JS will inject: name, typewriter role text
+       HERO — a booting REPL session
   ============================================================ -->
   <section id="hero">
-    <div class="hero-content">
-      <p class="hero-greeting">Hi, I'm</p>
-      <h1 class="hero-name" id="hero-name"></h1>  <!-- JS fills this -->
-      <h2 class="hero-role">
-        <span id="typewriter"></span>              <!-- JS types this -->
-        <span class="cursor">|</span>
-      </h2>
-      <p class="hero-bio" id="hero-bio"></p>       <!-- JS fills this -->
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+    <div class="hero-inner">
+      <div class="terminal-window hero-window">
+        <div class="window-bar">
+          <div class="window-dots">
+            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          </div>
+          <span class="window-title">python3 — whoami.py</span>
+        </div>
+        <div class="hero-body">
+          <p class="repl-line">
+            <span class="in-tag">In&nbsp;[1]:</span> <span class="call">whoami</span><span class="punct">()</span>
+          </p>
+          <h1 class="hero-name">
+            <span class="out-tag">Out[1]:</span> <span id="hero-name"></span>
+          </h1>
+          <p class="hero-role">
+            <span class="prompt-chevron">&gt;</span>
+            <span id="typewriter"></span><span class="cursor" aria-hidden="true">▌</span>
+          </p>
+          <p class="hero-bio"><span class="hash">#</span> <span id="hero-bio"></span></p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary"><span class="btn-prompt">$</span> view --projects</a>
+            <a href="#contact" class="btn btn-secondary"><span class="btn-prompt">$</span> init --contact</a>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Decorative background blobs — pure CSS, no images needed -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </section>
-
-  <!-- ============================================================
-       ABOUT SECTION
-       Glass card with bio and stat chips
-       JS will inject content from data.json
-  ============================================================ -->
-  <section id="about">
-    <div class="section-header">
-      <h2 class="section-title">About Me</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="about-card glass-card">
-      <div class="about-text">
-        <p id="about-description"></p>  <!-- JS fills this -->
-        <div class="about-stats" id="about-stats"></div>  <!-- JS builds chips -->
-      </div>
+      <p class="hero-scroll-hint">scroll <span class="hero-scroll-arrow">↓</span></p>
     </div>
   </section>
 
   <!-- ============================================================
-       SKILLS SECTION
-       Grid of glass pill badges grouped by category
-       JS will inject from data.json
+       ABOUT — a docstring cell
   ============================================================ -->
-  <section id="skills">
-    <div class="section-header">
-      <h2 class="section-title">Skills</h2>
-      <div class="section-line"></div>
+  <section id="about" class="cell-section">
+    <div class="cell-label">
+      <span class="cell-index">In&nbsp;[2]:</span> <span class="cell-call">about<span class="punct">.</span>describe<span class="punct">()</span></span>
+    </div>
+    <div class="cell-output about-card">
+      <p class="docstring-mark">&quot;&quot;&quot;</p>
+      <p class="about-text" id="about-description"></p>
+      <p class="docstring-mark">&quot;&quot;&quot;</p>
+      <div class="about-stats" id="about-stats"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS — requirements listing, grouped by category
+  ============================================================ -->
+  <section id="skills" class="cell-section">
+    <div class="cell-label">
+      <span class="cell-index">In&nbsp;[3]:</span> <span class="cell-call">cat<span class="punct"> </span>skills.json</span>
     </div>
     <div class="skills-container" id="skills-container">
-      <!-- JS dynamically builds skill groups here -->
+      <!-- JS builds skill groups here -->
     </div>
   </section>
 
   <!-- ============================================================
-       PROJECTS SECTION
-       Glass cards with project name, description, tags, links
-       JS will inject from data.json
+       PROJECTS — directory listing of build artifacts
   ============================================================ -->
-  <section id="projects">
-    <div class="section-header">
-      <h2 class="section-title">Projects</h2>
-      <div class="section-line"></div>
+  <section id="projects" class="cell-section">
+    <div class="cell-label">
+      <span class="cell-index">In&nbsp;[4]:</span> <span class="cell-call">ls<span class="punct"> </span>-la<span class="punct"> </span>projects/</span>
     </div>
     <div class="projects-grid" id="projects-grid">
-      <!-- JS dynamically builds project cards here -->
+      <!-- JS builds project cards here -->
     </div>
   </section>
 
   <!-- ============================================================
-       CONTACT SECTION
-       Glass card with email and social links
-       JS will inject from data.json
+       CONTACT — a shell script
   ============================================================ -->
-  <section id="contact">
-    <div class="section-header">
-      <h2 class="section-title">Get In Touch</h2>
-      <div class="section-line"></div>
+  <section id="contact" class="cell-section">
+    <div class="cell-label">
+      <span class="cell-index">In&nbsp;[5]:</span> <span class="cell-call">bash<span class="punct"> </span>contact.sh</span>
     </div>
-    <div class="contact-card glass-card">
+    <div class="contact-card">
       <p class="contact-intro" id="contact-intro"></p>
       <a class="contact-email" id="contact-email"></a>
+      <p class="ls-label"><span class="btn-prompt">$</span> ls ~/socials</p>
       <div class="contact-links" id="contact-links">
-        <!-- JS builds social icon links here -->
+        <!-- JS builds social links here -->
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       FOOTER
+       FOOTER — process exit
   ============================================================ -->
   <footer id="footer">
-    <p id="footer-text"></p>  <!-- JS fills this -->
+    <p class="exit-line"><span class="hash">#</span> process finished with exit code <span class="exit-code">0</span></p>
+    <p id="footer-text"></p>
   </footer>
 
-  <!-- Your scripts — load AFTER the HTML so JS can find the elements -->
   <script src="script.js"></script>
-
 </body>
 </html>
