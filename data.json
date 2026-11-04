@@ -1,43 +1,94 @@
 {
   "name": "Shubhrajit Karan",
-  "role": ["Python Developer", "Heading to AIML", "Full Stack Software Developer","Gen-AI Engineer"],
+  "role": [
+    "Python Developer",
+    "Heading to AIML",
+    "Full Stack Software Developer",
+    "Gen-AI Engineer"
+  ],
   "bio": "I build clean, innovative and thoughtful Technology. Passionate about new age technologies, turning ideas into real products.",
-
   "about": {
     "description": "I'm Shubhrajit Karan, a Python Developer from India, I build production-ready software and web applications using python, currently heading towards AIML, I enjoy building something that has never been built before, focused on user experience and problem solving.",
     "stats": [
-      { "label": "Projects Built", "value": "10+" },
-      { "label": "Technologies", "value": "5+" }
+      {
+        "label": "Projects Built",
+        "value": "10+"
+      },
+      {
+        "label": "Technologies",
+        "value": "5+"
+      }
     ]
   },
-
   "skills": [
     {
       "category": "Languages",
-      "items": ["Python", "Java", "Shellscript", "HTML/CSS", "C","SQL"]
+      "items": [
+        "Python",
+        "Java",
+        "Shellscript",
+        "HTML/CSS",
+        "C",
+        "SQL"
+      ]
     },
     {
       "category": "Frameworks & Libraries",
-      "items": ["NumPy","Pandas","Matplotlib","OpenCV","CustomTkinter","Requests","SQLite","Hadoop","Flask","Django"]
+      "items": [
+        "NumPy",
+        "Pandas",
+        "Matplotlib",
+        "OpenCV",
+        "CustomTkinter",
+        "Requests",
+        "SQLite",
+        "Hadoop",
+        "Flask",
+        "Django"
+      ]
     },
     {
       "category": "Tools & Platforms",
-      "items": ["Linux","Hadoop","Whisper(openAI)","win32com","Cloudera","Kiro","Claude Code","Git", "GitHub", "VS Code"]
+      "items": [
+        "Linux",
+        "Hadoop",
+        "Whisper(openAI)",
+        "win32com",
+        "Cloudera",
+        "Kiro",
+        "Claude Code",
+        "Git",
+        "GitHub",
+        "VS Code"
+      ]
     }
   ],
-
   "projects": [
     {
       "title": "Swagat AI",
       "description": "LLM-integrated, AI-Receptionist, to assist customers in any offices, and public portals.",
-      "tags": ["Python","Flask","HTML-CSS", "JavaScript", "Whisper", "Win32com", "Mistral (Ollama)"],
+      "tags": [
+        "Python",
+        "Flask",
+        "HTML-CSS",
+        "JavaScript",
+        "Whisper",
+        "Win32com",
+        "Mistral (Ollama)"
+      ],
       "github": "https://github.com/sjkaran/swagat_ai",
       "live": "Not deployed, locally tested (due to heavy infrastructure requirement)"
     },
     {
       "title": "Biztrack-web-app",
       "description": "A real time expense/savings tracker with exportable excel report feature, in your pocket.-mobile phone UI based functional website.",
-      "tags": ["HTML","CSS","JavaScript","JSON","Excel"],
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "JSON",
+        "Excel"
+      ],
       "github": "https://github.com/sjkaran/biz_track_webapp",
       "live": "#",
       "Deployed Link": "https://sjkaran.github.io/biz_track_webapp/"
@@ -45,28 +96,111 @@
     {
       "title": "BizTrack- Desktop Application",
       "description": "Production ready + Deployed Business Ledger application, to store business expenses and generate Excel report.",
-      "tags": ["CustomTkinter", "Python", "SQLite", "OpenPyXL", "Matplotlib", "Pandas"],
+      "tags": [
+        "CustomTkinter",
+        "Python",
+        "SQLite",
+        "OpenPyXL",
+        "Matplotlib",
+        "Pandas"
+      ],
       "github": "https://github.com/sjkaran/expanse-notebook-desktop_apk",
       "live": "#"
     },
     {
       "title": "Voice Engine",
       "description": "A Technology (Algorithm) that listens to natural language voices of the user, recognizes and communicate accordingly.",
-      "tags": ["Python","numpy","scipy","whisper","pyttsx3","win32com"],
+      "tags": [
+        "Python",
+        "numpy",
+        "scipy",
+        "whisper",
+        "pyttsx3",
+        "win32com"
+      ],
       "github": "https://github.com/sjkaran/voice_engine",
       "live": "ready to be used as a tool in any project"
+    },
+    {
+      "title": "Receptionist AI",
+      "description": "A trainable voice receptionist for a front desk. Answers you have trained come first, a local Mistral model (via Ollama) handles the rest, and it takes messages for your team. Ships as a web app and a desktop app.",
+      "tags": [
+        "Python",
+        "Ollama",
+        "Mistral",
+        "SQLite"
+      ],
+      "github": "https://github.com/sjkaran/receptionist_ai",
+      "live": "Runs locally (uses a local LLM)"
+    },
+    {
+      "title": "Smart Campus Management System",
+      "description": "One platform for student services, attendance, gate-pass requests and notifications, connecting a student web portal and admin, faculty and HOD desktop apps through a central REST API.",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Tkinter"
+      ],
+      "github": "https://github.com/sjkaran/campus-cod",
+      "live": "https://sjkaran.github.io/campus-cod/"
+    },
+    {
+      "title": "Smart QR Attendance System",
+      "description": "QR-based attendance for institutes, with a QR generator, a scanner and Excel report generation. Forked from Deepak-Sahoo7 and extended with spoken name-calling, moving toward dynamic QR verification.",
+      "tags": [
+        "Python",
+        "Tkinter",
+        "SQLite",
+        "Pandas",
+        "OpenCV"
+      ],
+      "github": "https://github.com/sjkaran/smart-Qr-attendance-system",
+      "live": "Fork of Deepak-Sahoo7/smart-Qr-attendance-system"
+    },
+    {
+      "title": "Livelihood",
+      "description": "A voice assistant for rural beneficiaries of the PM-AJAY scheme. It speaks in the local dialect and connects people to suitable skill-training programs, replacing paper forms. Built for Smart India Hackathon.",
+      "tags": [
+        "Python",
+        "Voice AI",
+        "SIH"
+      ],
+      "github": "https://github.com/sjkaran/livelihood_SIH",
+      "live": "Hackathon prototype"
+    },
+    {
+      "title": "Career Recommendation Portal",
+      "description": "An AI-powered career recommendation and internship matching platform for BPUT students.",
+      "tags": [
+        "Python",
+        "AI",
+        "Web Portal"
+      ],
+      "github": "https://github.com/sjkaran/Career-recommendation-AI-Web-portal",
+      "live": "Not deployed"
     }
   ],
-
   "contact": {
     "intro": "Currently Open to Contribute to innovate, Discuss new technologies, work on projects, my inbox is waiting for your Idea.",
     "email": "sjkaran05@gmail.com",
     "socials": [
-      { "label": "GitHub", "url": "https://github.com/sjkaran", "icon": "GH" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/shubhrajit-karan-334803235/", "icon": "LI" },
-      { "label": "Leet Code", "url": "https://leetcode.com/u/s_j_karan/", "icon": "Leet" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/sjkaran",
+        "icon": "GH"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/shubhrajit-karan-334803235/",
+        "icon": "LI"
+      },
+      {
+        "label": "Leet Code",
+        "url": "https://leetcode.com/u/s_j_karan/",
+        "icon": "Leet"
+      }
     ]
   },
-
   "footer": "Designed and built by S J Karan"
 }
