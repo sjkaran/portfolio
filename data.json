@@ -4,7 +4,7 @@
   "bio": "I build clean, innovative and thoughtful Technology. Passionate about new age technologies, turning ideas into real products.",
 
   "about": {
-    "description": "I'm Shubhrajit Karan, a Python Developer from India, I build Production ready software and web applications using python, currently heading towards AIML, I enjoy building something that is never build before, focus on User experience and problem solving.",
+    "description": "I'm Shubhrajit Karan, a Python Developer from India, I build production-ready software and web applications using python, currently heading towards AIML, I enjoy building something that has never been built before, focused on user experience and problem solving.",
     "stats": [
       { "label": "Projects Built", "value": "10+" },
       { "label": "Technologies", "value": "5+" }
@@ -22,38 +22,39 @@
     },
     {
       "category": "Tools & Platforms",
-      "items": ["Linux","Hadoop","Whisper(openAI)","win32com","Cloudera","Kiro","Cloude code","Git", "GitHub", "VS Code"]
+      "items": ["Linux","Hadoop","Whisper(openAI)","win32com","Cloudera","Kiro","Claude Code","Git", "GitHub", "VS Code"]
     }
   ],
 
   "projects": [
     {
       "title": "Swagat AI",
-      "description": "LLM-integrated, AI-Receptionist, to assist customers in any officies, and pulbic portals.",
-      "tags": ["Python","Flask","HTML-CSS", "JavaScript", "Whishper", "Win32com", "MystralAI (Ollama)"],
+      "description": "LLM-integrated, AI-Receptionist, to assist customers in any offices, and public portals.",
+      "tags": ["Python","Flask","HTML-CSS", "JavaScript", "Whisper", "Win32com", "Mistral (Ollama)"],
       "github": "https://github.com/sjkaran/swagat_ai",
       "live": "Not deployed, locally tested (due to heavy infrastructure requirement)"
     },
     {
       "title": "Biztrack-web-app",
-      "description": "A real time expence/savings tracker with exportable excel report feature, in your pocket.-mobile phone UI based functional website.",
+      "description": "A real time expense/savings tracker with exportable excel report feature, in your pocket.-mobile phone UI based functional website.",
       "tags": ["HTML","CSS","JavaScript","JSON","Excel"],
       "github": "https://github.com/sjkaran/biz_track_webapp",
-      "live": "https://sjkaran.github.io/biz_track_webapp/"
+      "live": "#",
+      "Deployed Link": "https://sjkaran.github.io/biz_track_webapp/"
     },
     {
       "title": "BizTrack- Desktop Application",
       "description": "Production ready + Deployed Business Ledger application, to store business expenses and generate Excel report.",
-      "tags": ["CustomTkinter", "Python", "SQLite", "OpenPyExcel", "Matplotlib", "Pandas"],
+      "tags": ["CustomTkinter", "Python", "SQLite", "OpenPyXL", "Matplotlib", "Pandas"],
       "github": "https://github.com/sjkaran/expanse-notebook-desktop_apk",
       "live": "#"
     },
     {
       "title": "Voice Engine",
-      "description": "A Technology (Algorithm) that listens to natuaral language voices of the user, recognizes and communicate accordingly.",
+      "description": "A Technology (Algorithm) that listens to natural language voices of the user, recognizes and communicate accordingly.",
       "tags": ["Python","numpy","scipy","whisper","pyttsx3","win32com"],
       "github": "https://github.com/sjkaran/voice_engine",
-      "live": "ready to be used as a tool in any projects"
+      "live": "ready to be used as a tool in any project"
     }
   ],
 
@@ -67,5 +68,5 @@
     ]
   },
 
-  "footer": "Desigend and build by S J Karan"
+  "footer": "Designed and built by S J Karan"
 }

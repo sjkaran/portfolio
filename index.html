@@ -4,134 +4,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shubhrajit Karan — Python / AI-ML Developer</title>
-  <meta name="description" content="Shubhrajit Karan — Python developer heading into AI/ML. Projects, skills, and contact." />
+  <title>Shubhrajit Karan — The Gallery of Code</title>
+  <meta name="description" content="Shubhrajit Karan — Python / AI-ML developer. A gallery of masterpieces re-painted in code." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <div class="wall-light" aria-hidden="true"></div>
 
-  <!-- ============================================================
-       NAV — editor tab bar
-  ============================================================ -->
-  <nav id="navbar">
-    <div class="nav-path">
-      <span class="nav-user">karan@portfolio</span><span class="nav-sep">:</span><span class="nav-tilde">~$</span>
-    </div>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-tabs" id="nav-tabs">
-      <li><a href="#about" class="tab"><span class="tab-dot"></span>about.md</a></li>
-      <li><a href="#skills" class="tab"><span class="tab-dot"></span>skills.json</a></li>
-      <li><a href="#projects" class="tab"><span class="tab-dot"></span>projects/</a></li>
-      <li><a href="#contact" class="tab"><span class="tab-dot"></span>contact.sh</a></li>
-    </ul>
-  </nav>
+  <header id="topbar">
+    <a href="#hero" class="brand">S<span>.</span>J<span>.</span>K</a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#gallery">Gallery</a>
+      <a href="#gallery" data-jump="contact">Contact</a>
+    </nav>
+  </header>
 
-  <!-- ============================================================
-       HERO — a booting REPL session
-  ============================================================ -->
+  <!-- HERO — The Creation of Adam, re-rendered in code glyphs -->
   <section id="hero">
-    <div class="hero-inner">
-      <div class="terminal-window hero-window">
-        <div class="window-bar">
-          <div class="window-dots">
-            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-          </div>
-          <span class="window-title">python3 — whoami.py</span>
-        </div>
-        <div class="hero-body">
-          <p class="repl-line">
-            <span class="in-tag">In&nbsp;[1]:</span> <span class="call">whoami</span><span class="punct">()</span>
-          </p>
-          <h1 class="hero-name">
-            <span class="out-tag">Out[1]:</span> <span id="hero-name"></span>
-          </h1>
-          <p class="hero-role">
-            <span class="prompt-chevron">&gt;</span>
-            <span id="typewriter"></span><span class="cursor" aria-hidden="true">▌</span>
-          </p>
-          <p class="hero-bio"><span class="hash">#</span> <span id="hero-bio"></span></p>
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary"><span class="btn-prompt">$</span> view --projects</a>
-            <a href="#contact" class="btn btn-secondary"><span class="btn-prompt">$</span> init --contact</a>
-          </div>
-        </div>
-      </div>
-      <p class="hero-scroll-hint">scroll <span class="hero-scroll-arrow">↓</span></p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       ABOUT — a docstring cell
-  ============================================================ -->
-  <section id="about" class="cell-section">
-    <div class="cell-label">
-      <span class="cell-index">In&nbsp;[2]:</span> <span class="cell-call">about<span class="punct">.</span>describe<span class="punct">()</span></span>
-    </div>
-    <div class="cell-output about-card">
-      <p class="docstring-mark">&quot;&quot;&quot;</p>
-      <p class="about-text" id="about-description"></p>
-      <p class="docstring-mark">&quot;&quot;&quot;</p>
-      <div class="about-stats" id="about-stats"></div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SKILLS — requirements listing, grouped by category
-  ============================================================ -->
-  <section id="skills" class="cell-section">
-    <div class="cell-label">
-      <span class="cell-index">In&nbsp;[3]:</span> <span class="cell-call">cat<span class="punct"> </span>skills.json</span>
-    </div>
-    <div class="skills-container" id="skills-container">
-      <!-- JS builds skill groups here -->
-    </div>
-  </section>
-
-  <!-- ============================================================
-       PROJECTS — directory listing of build artifacts
-  ============================================================ -->
-  <section id="projects" class="cell-section">
-    <div class="cell-label">
-      <span class="cell-index">In&nbsp;[4]:</span> <span class="cell-call">ls<span class="punct"> </span>-la<span class="punct"> </span>projects/</span>
-    </div>
-    <div class="projects-grid" id="projects-grid">
-      <!-- JS builds project cards here -->
-    </div>
-  </section>
-
-  <!-- ============================================================
-       CONTACT — a shell script
-  ============================================================ -->
-  <section id="contact" class="cell-section">
-    <div class="cell-label">
-      <span class="cell-index">In&nbsp;[5]:</span> <span class="cell-call">bash<span class="punct"> </span>contact.sh</span>
-    </div>
-    <div class="contact-card">
-      <p class="contact-intro" id="contact-intro"></p>
-      <a class="contact-email" id="contact-email"></a>
-      <p class="ls-label"><span class="btn-prompt">$</span> ls ~/socials</p>
-      <div class="contact-links" id="contact-links">
-        <!-- JS builds social links here -->
+    <canvas id="hero-canvas" aria-label="The Creation of Adam redrawn in code characters: two hands reaching, a spark of light between them, a laptop on Adam's lap" role="img"></canvas>
+    <div class="hero-copy">
+      <p class="hero-after">after Michelangelo, 1512 &nbsp;·&nbsp; digitised 2026</p>
+      <h1 class="hero-name" id="hero-name"></h1>
+      <p class="hero-role"><span id="typewriter"></span><span class="cursor" aria-hidden="true">▌</span></p>
+      <p class="hero-bio" id="hero-bio"></p>
+      <div class="hero-cta">
+        <a href="#gallery" class="btn btn-gold">Enter the gallery</a>
+        <a href="#gallery" data-jump="contact" class="btn btn-ghost">Commission a work</a>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       FOOTER — process exit
-  ============================================================ -->
+  <!-- GALLERY — Pinterest-style masonry -->
+  <main id="gallery">
+    <div class="filters" id="filters" role="toolbar" aria-label="Filter the gallery">
+      <button class="chip active" data-filter="all">All works</button>
+      <button class="chip" data-filter="projects">Projects</button>
+      <button class="chip" data-filter="skills">Skills</button>
+      <button class="chip" data-filter="about">About</button>
+      <button class="chip" data-filter="contact">Contact</button>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </main>
+
   <footer id="footer">
-    <p class="exit-line"><span class="hash">#</span> process finished with exit code <span class="exit-code">0</span></p>
+    <p class="footer-title">The Gallery of Code</p>
     <p id="footer-text"></p>
+    <p class="footer-fine">Paintings after public-domain masters, re-drawn procedurally in canvas. No images were harmed.</p>
   </footer>
 
+  <!-- VIEWER — click any work to enter it -->
+  <dialog id="viewer" aria-label="Work details">
+    <button class="viewer-close" id="viewer-close" aria-label="Close">×</button>
+    <div class="viewer-grid">
+      <div class="viewer-art frame frame-gilt"><canvas id="viewer-canvas"></canvas></div>
+      <div class="viewer-info" id="viewer-info"></div>
+    </div>
+  </dialog>
+
+  <script src="paintings.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
