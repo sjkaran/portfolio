@@ -86,110 +86,179 @@ const Stage = (() => {
 
 // ---------------------------------------------------------------
 // 1. THE CREATION OF ADAM — rendered in code glyphs
-//    Offscreen masks: red = flesh, green = laptop, blue = God's mantle
+//    Offscreen masks (on black): red = flesh, green = laptop,
+//    blue = God's mauve mantle, red+green = the grassy hill
 // ---------------------------------------------------------------
 function heroMasks(g) {
-  const F = (v) => `rgb(${(v * 255) | 0},0,0)`;
-  const L = (v) => `rgb(0,${(v * 255) | 0},0)`;
-  const C = (v) => `rgb(0,0,${(v * 255) | 0})`;
-  const blob = (c, x, y, rx, ry, rot = 0) => { g.fillStyle = c; g.beginPath(); g.ellipse(x, y, rx, ry, rot, 0, TAU); g.fill(); };
+  const q = (v) => (v * 255) | 0;
+  const F = (v) => `rgb(${q(v * 0.85)},0,0)`;
+  const Fb = (v) => `rgb(${q(v)},0,0)`;   // unscaled bright flesh (hair, beard, highlights)
+  const L = (v) => `rgb(0,${q(v)},0)`;
+  const C = (v) => `rgb(0,0,${q(v * 0.72)})`;
+  const E = (v) => `rgb(${q(v)},${q(v)},0)`;
+  // lit(): lighter copy of a flesh/cloak colour, used to model form (light from upper-left)
+  const lit = (c, d) => {
+    const m = c.match(/\d+/g).map(Number);
+    if (m[0] > 0 && !m[1] && !m[2]) return `rgb(${Math.min(255, m[0] + ((d * 255) | 0))},0,0)`;
+    if (m[2] > 0 && !m[0] && !m[1]) return `rgb(0,0,${Math.min(255, m[2] + ((d * 255) | 0))})`;
+    return null;
+  };
+  const blob = (c, x, y, rx, ry, rot = 0) => {
+    g.fillStyle = c; g.beginPath(); g.ellipse(x, y, rx, ry, rot, 0, TAU); g.fill();
+    const hl = lit(c, 0.24);
+    if (hl && rx > 7 && ry > 7) { g.fillStyle = hl; g.beginPath(); g.ellipse(x - rx * 0.22, y - ry * 0.3, rx * 0.55, ry * 0.5, rot, 0, TAU); g.fill(); }
+  };
   const limb = (c, x1, y1, x2, y2, w1, w2) => {
-    const n = Math.max(8, (Math.hypot(x2 - x1, y2 - y1) / 3) | 0); g.fillStyle = c;
+    const n = Math.max(8, (Math.hypot(x2 - x1, y2 - y1) / 2) | 0), hl = lit(c, 0.24); g.fillStyle = c;
     for (let i = 0; i <= n; i++) { const u = i / n; g.beginPath(); g.arc(lerp(x1, x2, u), lerp(y1, y2, u), lerp(w1, w2, u) / 2, 0, TAU); g.fill(); }
+    if (hl && Math.min(w1, w2) > 8) {
+      g.fillStyle = hl;
+      for (let i = 0; i <= n; i++) { const u = i / n, ww = lerp(w1, w2, u); g.beginPath(); g.arc(lerp(x1, x2, u) - ww * 0.14, lerp(y1, y2, u) - ww * 0.2, ww * 0.26, 0, TAU); g.fill(); }
+    }
   };
   const quad = (c, p) => { g.fillStyle = c; g.beginPath(); g.moveTo(p[0][0], p[0][1]); for (let i = 1; i < p.length; i++) g.lineTo(p[i][0], p[i][1]); g.closePath(); g.fill(); };
+  const curve = (c, lw, x0, y0, cx, cy, x1, y1) => { g.strokeStyle = c; g.lineWidth = lw; g.lineCap = 'round'; g.beginPath(); g.moveTo(x0, y0); g.quadraticCurveTo(cx, cy, x1, y1); g.stroke(); };
+  const R = mulberry(3);
 
-  // God's mantle of billowing cloud
-  [[800, 235, 230, 185], [640, 150, 70, 70], [700, 90, 80, 80], [820, 62, 85, 85], [930, 100, 80, 80], [985, 200, 62, 62],
-   [965, 320, 80, 80], [880, 405, 72, 72], [760, 415, 80, 80], [650, 350, 62, 62]].forEach(([x, y, a, b]) => blob(C(0.55), x, y, a, b || a));
-  blob(C(0.8), 860, 250, 120, 110);
-  // attendant figures within the mantle
-  [[885, 165], [935, 245], [905, 335]].forEach(([x, y]) => { blob(F(0.7), x, y, 21, 24); limb(F(0.55), x, y + 20, x + 10, y + 70, 36, 26); });
-  // ground
-  blob(F(0.28), 250, 480, 340, 70); blob(F(0.3), 140, 425, 170, 70);
+  // --- the grassy hill Adam reclines on
+  blob(E(0.3), 200, 482, 330, 70); blob(E(0.36), 110, 428, 175, 92); blob(E(0.28), 430, 478, 250, 48); blob(E(0.24), 640, 496, 300, 26);
+  for (let i = 0; i < 90; i++) blob(E(0.42 + R() * 0.2), R() * 560, 420 + R() * 80, 4 + R() * 8, 1.5 + R() * 2.5, R() - 0.5);
 
-  // ADAM
-  limb(F(0.9), 190, 275, 320, 340, 92, 70); blob(F(0.9), 335, 345, 48, 40);
-  limb(F(0.88), 335, 345, 430, 375, 52, 40); limb(F(0.82), 430, 375, 385, 440, 38, 26);
-  limb(F(0.8), 335, 352, 410, 402, 46, 38); limb(F(0.75), 410, 402, 468, 440, 34, 22);
-  blob(F(0.95), 125, 235, 32, 38); blob(F(0.45), 118, 214, 38, 26); limb(F(0.9), 140, 260, 172, 276, 30, 30);
-  limb(F(0.85), 165, 282, 140, 345, 30, 24); limb(F(0.8), 140, 345, 185, 392, 24, 18);
-  limb(F(0.92), 205, 270, 330, 246, 38, 28); limb(F(0.92), 330, 246, 445, 248, 28, 18);
-  blob(F(0.98), 462, 250, 22, 13, 0.1);
-  limb(F(1), 470, 249, 506, 256, 9, 5);
-  [[468, 257, 490, 270], [462, 260, 482, 276], [456, 262, 472, 280]].forEach((f) => limb(F(0.9), f[0], f[1], f[2], f[3], 8, 6));
-  limb(F(0.9), 455, 242, 480, 238, 7, 5);
+  // --- God's billowing mantle (mauve cloak) with its folds
+  const cx = 820, cy = 245, rx = 125, ry = 140;
+  for (let i = 0; i < 30; i++) {
+    const a = (i / 30) * TAU, j = 1 + 0.07 * Math.sin(a * 5 + 1);
+    blob(C(0.5 + 0.12 * Math.sin(a * 3)), cx + Math.cos(a) * rx * j, cy + Math.sin(a) * ry * j, 46, 46);
+  }
+  blob(C(0.42), cx, cy, rx * 0.98, ry * 0.98);
+  blob(C(0.72), 925, 108, 58, 44, -0.4); blob(C(0.56), 968, 150, 36, 48);
+  curve(C(0.28), 8, 705, 150, 760, 105, 850, 98); curve(C(0.28), 8, 700, 300, 705, 360, 780, 395);
+  curve(C(0.3), 7, 955, 180, 985, 260, 960, 340); curve(C(0.3), 7, 880, 392, 930, 372, 975, 335);
+  curve(C(0.92), 5, 722, 118, 790, 76, 890, 88); curve(C(0.9), 5, 945, 300, 972, 250, 968, 200);
 
-  // GOD
-  limb(F(0.6), 860, 300, 780, 385, 60, 40);
-  blob(F(0.95), 840, 240, 95, 80, 0.2); blob(F(1), 740, 150, 34, 40); blob(F(1), 735, 133, 46, 34); blob(F(1), 740, 196, 28, 36);
-  limb(F(0.95), 775, 225, 675, 232, 48, 34); limb(F(0.95), 675, 232, 595, 241, 34, 20);
-  blob(F(1), 578, 242, 23, 13, -0.05); limb(F(1), 566, 241, 534, 246, 9, 5);
-  [[572, 250, 552, 262], [576, 252, 556, 270]].forEach((f) => limb(F(0.9), f[0], f[1], f[2], f[3], 8, 6));
-  limb(F(0.9), 570, 234, 550, 230, 7, 5);
+  // dark contour so God reads against his own mantle
+  blob('#000', 742, 195, 46, 52); limb('#000', 775, 228, 885, 256, 96, 86); limb('#000', 782, 226, 604, 256, 62, 30); limb('#000', 880, 262, 1000, 320, 72, 50);
 
-  // LAPTOP resting on Adam's thighs
-  quad(L(0.9), [[340, 372], [450, 372], [468, 390], [326, 390]]);
-  quad(L(0.65), [[350, 298], [440, 298], [447, 370], [343, 370]]);
-  g.fillStyle = L(1); g.fillRect(358, 307, 74, 55);
-  g.fillStyle = L(0.4); for (let i = 0; i < 5; i++) g.fillRect(364, 313 + i * 10, 20 + ((i * 23) % 40), 4);
+  // --- Eve and the angels sheltered under God's left arm
+  [[790, 302, 22], [845, 330, 17], [880, 300, 17], [906, 346, 17], [862, 374, 16], [934, 322, 15]].forEach(([x, y, r]) => {
+    limb(F(0.62), x, y + r * 0.8, x + 6, y + r * 2.3, r * 1.5, r * 1.1);
+    blob(F(0.92), x, y, r, r * 1.1); blob(F(0.4), x - r * 0.15, y - r * 0.75, r * 1.05, r * 0.55);
+  });
+
+  // --- GOD, flying horizontally, white hair and beard streaming
+  limb(F(0.9), 775, 228, 885, 256, 84, 74);              // torso
+  blob(Fb(0.9), 815, 236, 34, 18, 0.2);                      // chest light
+  limb(F(0.85), 880, 260, 950, 288, 62, 46); limb(F(0.8), 950, 288, 992, 338, 42, 28);   // near leg
+  limb(F(0.7), 880, 270, 960, 312, 54, 40); limb(F(0.66), 960, 312, 1000, 296, 38, 26);   // far leg
+  curve(C(0.86), 20, 872, 292, 940, 336, 1000, 302);      // cloth swirling over the legs
+  limb(F(0.88), 800, 224, 820, 286, 42, 32); limb(F(0.82), 820, 286, 792, 306, 30, 22);   // left arm around Eve
+  limb(F(0.9), 748, 212, 770, 228, 30, 34);               // neck
+  blob(F(0.98), 733, 190, 31, 38, 0.15);                  // head
+  blob(F(0.5), 722, 180, 14, 5, 0.1);                     // brow shadow
+  blob(Fb(0.95), 706, 192, 8, 5);                             // nose
+  blob(Fb(0.97), 770, 168, 52, 40, -0.2);                     // mane
+  [[760, 155, 835, 128], [770, 175, 850, 168], [765, 195, 840, 205], [752, 148, 815, 112]].forEach(([x1, y1, x2, y2]) => limb(Fb(0.97), x1, y1, x2, y2, 16, 6));
+  blob(Fb(0.97), 724, 228, 26, 32, -0.2);                     // beard
+  [[716, 232, 698, 272], [730, 240, 724, 284], [744, 236, 756, 278]].forEach(([x1, y1, x2, y2]) => limb(Fb(1), x1, y1, x2, y2, 14, 5));
+  // God's reaching arm
+  limb(F(0.95), 782, 226, 690, 242, 54, 42); limb(F(0.95), 690, 242, 604, 256, 38, 22);
+  blob(F(0.98), 586, 258, 22, 13, 0.08);
+  limb(F(1), 576, 257, 541, 263, 9, 5);                   // the index finger
+  limb(F(0.88), 582, 266, 563, 283, 8, 6); limb(F(0.84), 588, 268, 572, 290, 8, 6); limb(F(0.9), 584, 251, 562, 243, 7, 5);
+
+  // --- ADAM, reclining, left arm resting over his raised knee
+  limb(F(0.88), 190, 284, 322, 346, 102, 80);             // torso
+  blob(F(1), 218, 288, 32, 17, 0.45); blob(F(0.95), 272, 322, 30, 14, 0.4);           // chest and belly light
+  curve(F(0.5), 3, 240, 306, 268, 322, 296, 340); curve(F(0.52), 3, 215, 300, 232, 312, 250, 330);
+  blob(F(0.9), 327, 350, 50, 42);                         // hips
+  limb(F(0.88), 318, 336, 392, 300, 56, 44); blob(F(0.97), 396, 298, 24, 24);       // thigh + raised knee
+  limb(F(0.84), 396, 298, 440, 376, 40, 28); limb(F(0.78), 440, 376, 464, 384, 22, 14); // shin + foot
+  limb(F(0.8), 332, 360, 432, 398, 56, 44); limb(F(0.74), 432, 398, 515, 432, 42, 26); blob(F(0.7), 530, 438, 18, 9); // extended leg
+  blob(F(0.97), 130, 240, 31, 37, -0.3);                  // head
+  blob(F(0.38), 118, 216, 41, 28, -0.3); blob(F(0.36), 100, 242, 22, 34, 0.1); blob(F(0.5), 150, 214, 18, 9, -0.4);   // hair
+  blob(F(0.5), 148, 236, 9, 4); blob(F(0.5), 160, 252, 10, 5, 0.4);                  // face shadow
+  limb(F(0.88), 142, 264, 178, 284, 34, 36);              // neck
+  limb(F(0.84), 168, 294, 138, 350, 34, 26); limb(F(0.8), 138, 350, 172, 396, 26, 20); blob(F(0.8), 182, 402, 17, 9, 0.2);  // propping arm
+  limb(F(0.92), 210, 274, 338, 274, 40, 28);              // upper arm over to the knee
+  limb(F(0.92), 338, 274, 448, 264, 28, 18);              // forearm
+  blob(F(0.98), 468, 270, 22, 14, 0.35);                  // limp hand
+  limb(F(1), 480, 271, 514, 273, 9, 5);                   // index finger
+  [[478, 279, 498, 293], [472, 282, 488, 299], [466, 283, 478, 301]].forEach(([x1, y1, x2, y2]) => limb(F(0.88), x1, y1, x2, y2, 8, 6));
+  limb(F(0.9), 462, 262, 490, 258, 7, 5);                 // thumb
+
+  // contour shadows that separate the big forms
+  curve(F(0.2), 5, 318, 330, 372, 318, 392, 322); curve(F(0.22), 5, 396, 320, 420, 350, 436, 378);
+  curve(F(0.22), 5, 330, 372, 400, 392, 440, 410); curve(F(0.25), 4, 190, 300, 150, 325, 150, 350);
+  curve(F(0.22), 5, 790, 236, 840, 262, 885, 268); curve(F(0.25), 4, 880, 290, 930, 316, 990, 340);
+
+  // --- LAPTOP on the hill beside him
+  quad(L(0.9), [[196, 454], [340, 454], [358, 471], [178, 471]]);
+  quad(L(0.65), [[215, 390], [322, 390], [328, 452], [209, 452]]);
+  quad(L(1), [[222, 397], [315, 397], [319, 444], [218, 444]]);
+  g.fillStyle = L(0.4); for (let i = 0; i < 5; i++) g.fillRect(228, 403 + i * 8, 24 + ((i * 29) % 46), 3);
 }
 
 function heroInit(it) {
   const { w, h } = it;
-  const cell = w < 640 ? 7 : w < 1100 ? 9 : 11;
-  const scale = Math.min(w / 1000, h / 540);
-  const ox = (w - 1000 * scale) / 2, oy = (h - 500 * scale) / 2 + h * 0.02;
+  const cell = w < 640 ? 5 : w < 1100 ? 6 : 7;
+  const scale = Math.min(w / 1000, h / 520);
+  const ox = (w - 1000 * scale) / 2, oy = (h - 500 * scale) / 2 + h * 0.01;
   const cols = Math.ceil(w / cell), rows = Math.ceil(h / cell);
   const off = document.createElement('canvas'); off.width = cols; off.height = rows;
   const g = off.getContext('2d', { willReadFrequently: true });
+  g.fillStyle = '#000'; g.fillRect(0, 0, cols, rows);      // black base → soft antialiased edges
   const k = scale / cell; g.setTransform(k, 0, 0, k, ox / cell, oy / cell);
   heroMasks(g);
   const px = g.getImageData(0, 0, cols, rows).data;
   const R = mulberry(7);
-  const sets = [['.', ':', ';', ','], ['=', '+', '/', '-', '*', '(', ')'], ['{', '}', '<', '>', '#', '&'], ['0', '1', '{', '}', '@', '%', '$']];
+  const LV = 6;
+  const sets = [['.', ','], [':', ';'], ['-', '=', '+', '*'], ['/', '(', ')', '<', '>'], ['{', '}', '#', '&'], ['@', '%', '8', '0', '1', '$']];
   const colors = [
-    ['#5a3a26', '#9a6a45', '#e0b27f', '#fff0d2'],
-    ['#1f6f66', '#2fb59f', '#63e8d0', '#d6fff6'],
-    ['#243a9a', '#3f5bd6', '#7f95ff', '#d0d8ff'],
-  ].flat();
+    '#3a2418', '#6b4328', '#a06c45', '#d49c6c', '#f0c897', '#fff3da',     // flesh
+    '#14463f', '#1f7f72', '#2fb59f', '#63e8d0', '#a6f5e6', '#e6fffa',     // laptop
+    '#3d1a3a', '#6a2a5a', '#9c3f82', '#d075b0', '#eea7d2', '#ffe1f2',     // God's mantle
+    '#16281a', '#27472a', '#3a6b36', '#58903f', '#82b25a', '#b6d98a',     // hill
+    '#4a4468',                                                            // ambient dust
+  ];
   const buckets = colors.map(() => []);
+  const ambient = ['.', '+', '0', '1', '·'];
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
     const i = (r * cols + c) * 4, R0 = px[i], G0 = px[i + 1], B0 = px[i + 2];
-    const v = Math.max(R0, G0, B0); if (v < 24) continue;
-    const mat = R0 >= G0 && R0 >= B0 ? 0 : G0 >= B0 ? 1 : 2;
-    const lvl = Math.min(3, (v / 64) | 0), set = sets[lvl];
-    buckets[mat * 4 + lvl].push({ x: (c + 0.5) * cell, y: (r + 0.5) * cell, ch: set[(R() * set.length) | 0], ox: 0, oy: 0 });
+    const v = Math.max(R0, G0, B0), x = (c + 0.5) * cell, y = (r + 0.5) * cell;
+    if (v < 30) { if (R() < 0.03) buckets[24].push({ x, y, ch: ambient[(R() * ambient.length) | 0], ox: 0, oy: 0 }); continue; }
+    const mat = B0 > R0 && B0 > G0 ? 2 : G0 > R0 + 18 ? 1 : R0 > G0 + 18 ? 0 : 3;
+    const lvl = Math.min(LV - 1, (v / 43) | 0), set = sets[lvl];
+    buckets[mat * LV + lvl].push({ x, y, ch: set[(R() * set.length) | 0], ox: 0, oy: 0 });
   }
-  return { cell, buckets, colors, sx: ox + 520 * scale, sy: oy + 251 * scale };
+  return { cell, scale, buckets, colors, sx: ox + 528 * scale, sy: oy + 267 * scale };
 }
 
 function hero(ctx, w, h, t, it) {
   const S = it.state; ctx.clearRect(0, 0, w, h);
   const r = it.canvas.getBoundingClientRect(), mx = Mouse.x - r.left, my = Mouse.y - r.top;
-  ctx.font = `700 ${S.cell}px ${MONO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  const RAD = S.cell * 9;
+  ctx.font = `700 ${S.cell + 0.5}px ${MONO}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const RAD = Math.max(60, S.cell * 12);
   S.buckets.forEach((arr, b) => {
-    ctx.fillStyle = S.colors[b]; ctx.globalAlpha = 0.8 + 0.2 * Math.sin(t * 1.3 + b * 1.7);
+    ctx.fillStyle = S.colors[b]; ctx.globalAlpha = b === 24 ? 0.6 : 0.82 + 0.18 * Math.sin(t * 1.3 + b * 1.7);
     for (const c of arr) {
       let tx = 0, ty = 0; const dx = c.x - mx, dy = c.y - my, d2 = dx * dx + dy * dy;
-      if (d2 < RAD * RAD) { const d = Math.sqrt(d2) || 1, f = (RAD - d) / RAD; tx = (dx / d) * f * RAD * 0.55; ty = (dy / d) * f * RAD * 0.55; }
+      if (d2 < RAD * RAD) { const d = Math.sqrt(d2) || 1, f = (RAD - d) / RAD; tx = (dx / d) * f * RAD * 0.5; ty = (dy / d) * f * RAD * 0.5; }
       c.ox += (tx - c.ox) * 0.14; c.oy += (ty - c.oy) * 0.14;
       ctx.fillText(c.ch, c.x + c.ox, c.y + c.oy);
     }
   });
   ctx.globalAlpha = 1;
   // the spark of life
-  const near = Math.max(0, 1 - Math.hypot(mx - S.sx, my - S.sy) / 180);
-  const pulse = 1 + 0.18 * Math.sin(t * 3) + near * 0.7, rad = S.cell * 5 * pulse;
+  const near = Math.max(0, 1 - Math.hypot(mx - S.sx, my - S.sy) / 200);
+  const pulse = 1 + 0.18 * Math.sin(t * 3) + near * 0.7, rad = S.scale * 34 * pulse;
   ctx.globalCompositeOperation = 'lighter';
   ctx.fillStyle = rgrad(ctx, S.sx, S.sy, 0, rad * 2.2, [[0, 'rgba(255,248,220,.95)'], [0.25, 'rgba(255,205,110,.55)'], [1, 'rgba(255,170,60,0)']]);
   ctx.beginPath(); ctx.arc(S.sx, S.sy, rad * 2.2, 0, TAU); ctx.fill();
   ctx.globalCompositeOperation = 'source-over';
   const chars = '</>{};01=()';
-  ctx.font = `700 ${S.cell * 1.15}px ${MONO}`; ctx.fillStyle = '#ffe3a1';
+  ctx.font = `700 ${Math.max(8, S.cell * 1.6)}px ${MONO}`; ctx.fillStyle = '#ffe3a1';
   for (let i = 0; i < 18; i++) {
-    const a = (i / 18) * TAU + t * 0.7, ph = (t * 0.45 + i * 0.137) % 1, rr = S.cell * (1.5 + ph * 7);
+    const a = (i / 18) * TAU + t * 0.7, ph = (t * 0.45 + i * 0.137) % 1, rr = S.scale * (10 + ph * 62);
     ctx.globalAlpha = (1 - ph) * 0.9;
     ctx.fillText(chars[i % chars.length], S.sx + Math.cos(a) * rr, S.sy + Math.sin(a) * rr * 0.7);
   }
