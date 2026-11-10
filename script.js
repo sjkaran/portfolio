@@ -32,24 +32,29 @@ const masonry = $('#masonry');
 // ---------------------------------------------------------------
 // Build one framed painting "pin"
 // ---------------------------------------------------------------
-function addPin({ id, cat, art, title, blurb, tags, fill }) {
+function addPin({ id, cat, art, title, blurb, tags, fill, image }) {
   const pin = h('article', 'pin'); pin.id = id; pin.dataset.cat = cat; pin.tabIndex = 0; pin.setAttribute('role', 'button');
   pin.setAttribute('aria-label', `Open ${title}`);
   const frame = h('div', `frame frame-${art.frame}`);
-  const canvas = h('canvas'); canvas.style.setProperty('--ratio', art.ratio);
-  frame.appendChild(canvas);
+  let canvas = null;
+  if (image) {                       // real UI screenshot instead of a painting
+    const img = h('img', 'shot'); img.src = image; img.alt = `${title} — interface screenshot`; img.loading = 'lazy'; img.decoding = 'async';
+    frame.appendChild(img);
+  } else {
+    canvas = h('canvas'); canvas.style.setProperty('--ratio', art.ratio); frame.appendChild(canvas);
+  }
   const save = h('button', 'pin-save', 'Pin'); save.type = 'button'; save.setAttribute('aria-label', `Copy link to ${title}`);
   frame.appendChild(save); pin.appendChild(frame);
 
   const plaque = h('div', 'plaque');
-  plaque.append(h('h3', null, title), h('p', 'after', art.after));
+  plaque.append(h('h3', null, title), h('p', 'after', image ? 'Interface · screenshot' : art.after));
   if (blurb) plaque.appendChild(h('p', 'desc', blurb));
   if (tags && tags.length) { const t = h('div', 'tags'); tags.slice(0, 4).forEach((x) => t.appendChild(h('span', 'tag', x))); plaque.appendChild(t); }
   pin.appendChild(plaque);
   masonry.appendChild(pin);
 
-  Stage.mount(canvas, Painters[art.painter]);
-  works[id] = { art, title, fill };
+  if (canvas) Stage.mount(canvas, Painters[art.painter]);
+  works[id] = { art, title, fill, image };
 
   pin.addEventListener('click', () => openWork(id));
   pin.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWork(id); } });
@@ -73,15 +78,17 @@ function addTextPin({ id, cat, label, html }) {
 // ---------------------------------------------------------------
 const viewer = $('#viewer'), vCanvas = $('#viewer-canvas'), vInfo = $('#viewer-info'), vArt = $('.viewer-art');
 let vItem = null;
+const vImg = h('img', 'shot'); vImg.style.display = 'none'; vArt.appendChild(vImg);
 
 function openWork(id) {
   const w = works[id]; if (!w) return;
   vArt.className = `viewer-art frame frame-${w.art.frame}`; vCanvas.style.setProperty('--ratio', w.art.ratio);
-  vInfo.replaceChildren(h('h2', null, w.title), h('p', 'after', w.art.after));
+  vInfo.replaceChildren(h('h2', null, w.title), h('p', 'after', w.image ? 'Interface · screenshot' : w.art.after));
   w.fill(vInfo);
   if (!viewer.open) viewer.showModal();
-  if (vItem) Stage.unmount(vItem);
-  vItem = Stage.mount(vCanvas, Painters[w.art.painter]);
+  if (vItem) { Stage.unmount(vItem); vItem = null; }
+  if (w.image) { vCanvas.style.display = 'none'; vImg.src = w.image; vImg.alt = `${w.title} — interface screenshot`; vImg.style.display = 'block'; }
+  else { vImg.style.display = 'none'; vCanvas.style.display = 'block'; vItem = Stage.mount(vCanvas, Painters[w.art.painter]); }
   history.replaceState(null, '', '#' + id);
 }
 function closeViewer() { if (viewer.open) viewer.close(); }
@@ -142,9 +149,9 @@ async function boot() {
     return { p, art, label: titles[i % titles.length] };
   });
   const addProject = ({ p, art, label }) => addPin({
-    id: 'work-' + slug(p.title), cat: 'projects', art, title: p.title, blurb: p.description, tags: p.tags,
+    id: 'work-' + slug(p.title), cat: 'projects', art, title: p.title, blurb: p.description, tags: p.tags, image: p.image,
     fill(el) {
-      el.appendChild(h('p', 'after', 'Hung as: ' + label));
+      if (!p.image) el.appendChild(h('p', 'after', 'Hung as: ' + label));
       el.appendChild(h('p', null, p.description)); el.appendChild(tagRow(p.tags));
       const row = h('div', 'links');
       if (p.github) row.appendChild(link('View source', p.github));
