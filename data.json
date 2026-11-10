@@ -6,9 +6,9 @@
     "Full Stack Software Developer",
     "Gen-AI Engineer"
   ],
-  "bio": "I build clean, innovative and thoughtful Technology. Passionate about new age technologies, turning ideas into real products.",
+  "bio": "I build clean, innovative and thoughtful Technology. Passionate about innovation, turning ideas into real products.",
   "about": {
-    "description": "I'm Shubhrajit Karan, a Python Developer from India, I build production-ready software and web applications using python, currently heading towards AIML, I enjoy building something that has never been built before, focused on user experience and problem solving.",
+    "description": "I'm Shubhrajit Karan, a Python Developer from India, I build production-ready software and web applications using python, currently heading towards AIML, I enjoy building something that has never been built before, focused on user experience, Innovation and problem solving.",
     "stats": [
       {
         "label": "Projects Built",
@@ -156,7 +156,7 @@
         "OpenCV"
       ],
       "github": "https://github.com/sjkaran/smart-Qr-attendance-system",
-      "live": "Fork of Deepak-Sahoo7/smart-Qr-attendance-system"
+      "live": "https://qr-attendance-84im.onrender.com/login"
     },
     {
       "title": "Livelihood",
