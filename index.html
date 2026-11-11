@@ -1,27 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shubhrajit Karan — The Gallery of Code</title>
   <meta name="description" content="Shubhrajit Karan — Python / AI-ML developer. A gallery of masterpieces re-painted in code." />
+  <meta name="author" content="Shubhrajit Karan" />
+  <meta name="theme-color" content="#05100C" />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="canonical" href="https://sjkaran.github.io/portfolio/" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Shubhrajit Karan — The Gallery of Code" />
+  <meta property="og:description" content="Python / AI-ML developer. A gallery of masterpieces re-painted in code." />
+  <meta property="og:url" content="https://sjkaran.github.io/portfolio/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Shubhrajit Karan — The Gallery of Code" />
+  <meta name="twitter:description" content="Python / AI-ML developer. A gallery of masterpieces re-painted in code." />
+
+  <!-- Apply the saved theme before first paint (no flash). Default: dark. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('gallery-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 
 <body>
+  <a class="skip-link" href="#gallery">Skip to the gallery</a>
+
+  <!-- decorative backdrop layers (pure CSS; the particle canvas is added by fx.js) -->
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wall-light" aria-hidden="true"></div>
 
   <header id="topbar">
     <a href="#hero" class="brand">S<span>.</span>J<span>.</span>K</a>
-    <nav class="topnav" aria-label="Sections">
-      <a href="#gallery">Gallery</a>
-      <a href="#gallery" data-jump="contact">Contact</a>
-    </nav>
+    <div class="topbar-right">
+      <nav class="topnav" aria-label="Sections">
+        <a href="#gallery">Gallery</a>
+        <a href="#gallery" data-jump="contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+    </div>
   </header>
 
   <!-- HERO — The Creation of Adam, re-rendered in code glyphs -->
@@ -34,8 +67,17 @@
       <p class="hero-bio" id="hero-bio"></p>
       <div class="hero-cta">
         <a href="#gallery" class="btn btn-gold">Enter the gallery</a>
+        <span class="cta-divider" aria-hidden="true"><i></i><b>or</b><i></i></span>
         <a href="#gallery" data-jump="contact" class="btn btn-ghost">Commission a work</a>
       </div>
+    </div>
+
+    <!-- signature 3D element: a floating, tilting cube of code glyphs (decorative, sits in the empty gutter) -->
+    <div class="hero-cube" id="hero-cube" aria-hidden="true">
+      <div class="cube-float"><div class="cube-tilt"><div class="cube-spin">
+        <i class="face f1">{ }</i><i class="face f2">&lt;/&gt;</i><i class="face f3">01</i>
+        <i class="face f4">py</i><i class="face f5">=&gt;</i><i class="face f6">#</i>
+      </div></div></div>
     </div>
   </section>
 
@@ -68,5 +110,6 @@
 
   <script src="paintings.js"></script>
   <script src="script.js"></script>
+  <script src="fx.js?v=2"></script>
 </body>
 </html>
