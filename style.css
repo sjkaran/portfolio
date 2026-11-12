@@ -18,12 +18,12 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --bg:         #05100C;   /* deep emerald-black wall */
-  --bg-2:       #0A1C14;   /* raised surface */
-  --emerald:    #0F5A3C;
-  --emerald-2:  #1A8A5E;
-  --gilt:       #D4AF37;   /* antique gold */
-  --gilt-hi:    #F2DE9B;
+  --bg:         #040703;   /* deep emerald-black wall */
+  --bg-2:       #081b55;   /* raised surface */
+  --emerald:    #113816;
+  --emerald-2:  #0e271d;
+  --gilt:       #f0c947;   /* antique gold */
+  --gilt-hi:    #c09404;
   --gilt-lo:    #7A5F14;
   --champagne:  #F7E7CE;
   --text:       #F4EFE0;   /* ivory */
@@ -212,7 +212,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 .hero-after { font-family: var(--mono); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); margin-bottom: 10px; }
 .hero-name {
-  font-family: var(--display); font-style: italic; font-weight: 700;
+  font-family: var(--display); font-style: normal; font-weight: 700;
   font-size: clamp(2.7rem, 9vw, 6.6rem); line-height: 1.04; padding-bottom: .06em;
   background: var(--head-grad);
   background-size: 200% auto;
